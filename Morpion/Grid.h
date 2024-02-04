@@ -7,6 +7,9 @@ private:
 	int m_rows;
 	int m_cols;
 	std::vector<std::vector<int>> m_grid;
+
+	bool checkWin(int player);
+
 public:
 	Grid();
 	void Show(sf::RenderWindow& window);

@@ -67,7 +67,7 @@ int main( int argc, char** argv )
         //oWindow.clear();
         ////Création d'un cercle de radius 100
         /*oWindow.draw(oRectangle); */
-        oGrid->Show(oWindow);
+        //oGrid->Show(oWindow);
         oWindow.display();
     }
 

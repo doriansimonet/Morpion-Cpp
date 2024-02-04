@@ -40,6 +40,35 @@ void Grid::Show(sf::RenderWindow& window) {
     }
 }
 
+bool Grid::checkWin(int player) {
+    // Vérifier les lignes et la victoire sur une ligne
+    for (int i = 0; i < m_rows; i++) {
+        if (m_grid[i][0] == player && m_grid[i][1] == player && m_grid[i][2] == player) {
+            return true; 
+        }
+    }
+
+    // Vérifier les colonnes et la victoire sur une colonne
+    for (int j = 0; j < m_cols; j++) {
+        if (m_grid[0][j] == player && m_grid[1][j] == player && m_grid[2][j] == player) {
+            return true; 
+        }
+    }
+
+    // Vérifier les diagonales et la victoire sur une diagonale
+    if (m_grid[0][0] == player && m_grid[1][1] == player && m_grid[2][2] == player) {
+        return true; 
+    }
+    // Vérifier l'autre diagonale
+    if (m_grid[0][2] == player && m_grid[1][1] == player && m_grid[2][0] == player) {
+        return true; 
+    }
+
+    return false; // Aucune victoire
+}
+
+
+
 int Grid::play(int player, sf::RenderWindow& window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     sf::RectangleShape oRectangle(sf::Vector2f(100.f, 100.f));
@@ -133,5 +162,17 @@ int Grid::play(int player, sf::RenderWindow& window) {
         }
     }
     
-    return player;
+    // Maj de la grille avec le coup du joueur
+    m_grid[mousePos.y / 100][mousePos.x / 100] = player;
+
+    // Vérifiez la victoire
+    if (checkWin(player)) {
+        std::cout << "Joueur " << player << " a gagné !" << std::endl;
+        // Ajoutez ici le code pour gérer la fin du jeu
+    }
+    // tour du joueur suivant
+    return (player == 1) ? 2 : 1;
+
+    // return player;
+
 }
