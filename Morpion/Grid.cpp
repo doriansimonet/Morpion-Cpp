@@ -22,13 +22,17 @@ void Grid::Show(sf::RenderWindow& window) {
     int posY = 0;
     for (int i = 0; i < m_rows; i++) {
         for (int j = 0; j < m_cols; j++) {
+
             sf::RectangleShape oRectangle(sf::Vector2f(100.f, 100.f));
             oRectangle.setPosition(posX, posY);
-            if (i % 2 == 0 && j % 2 == 0 || i % 2 != 0 && j % 2 != 0) {
-                oRectangle.setFillColor(sf::Color::Red);
-            }
-            else {
+            if (m_grid[i][j] == 0) {
                 oRectangle.setFillColor(sf::Color::Green);
+            }
+            if (m_grid[i][j] == 1) {
+                oRectangle.setFillColor(sf::Color::Magenta);
+            }
+            if (m_grid[i][j] == 2) {
+                oRectangle.setFillColor(sf::Color::Blue);
             }
             window.draw(oRectangle);
             //std::cout << "heu";
@@ -43,95 +47,170 @@ void Grid::Show(sf::RenderWindow& window) {
 int Grid::play(int player, sf::RenderWindow& window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
     sf::RectangleShape oRectangle(sf::Vector2f(100.f, 100.f));
-    if (player == 1) {
-        oRectangle.setFillColor(sf::Color::Magenta);
-        player++;
-    }
-    else if (player == 2) {
-        oRectangle.setFillColor(sf::Color::Blue);
-        player--;
-    }
-
-    m_grid[0][0] = player;
+    
+    ;
     //1ere ligne
     if (mousePos.x <= 100) {
         if (mousePos.y <= 100) {
             //1ère case
             //std::cout << "hey";
-            
-            
-            oRectangle.setPosition(0, 0);
-
-            window.draw(oRectangle);
+            if (m_grid[0][0] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[0][0] = player;
+            }
 
         }
     }
     if (mousePos.x > 100 && mousePos.x < 200) {
         if (mousePos.y <= 100) {
             //2ère case
-            oRectangle.setPosition(0, 100);
-
-            window.draw(oRectangle);
+            if (m_grid[0][1] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[0][1] = player;
+            }
         }
     }
     if (mousePos.x > 200 && mousePos.x < 300) {
         if (mousePos.y <= 100) {
             //3ère case
-            oRectangle.setPosition(0, 200);
-
-            window.draw(oRectangle);
+            if (m_grid[0][2] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[0][2] = player;
+            }
         }
     }
     //2eme ligne
     if (mousePos.x <= 100) {
         if (mousePos.y > 100 && mousePos.y < 200) {
             //1ère case
-            oRectangle.setPosition(100, 0);
-
-            window.draw(oRectangle);
+            if (m_grid[1][0] == 0) {
+                if (player == 1) {
+                   player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[1][0] = player;
+            }
         }
     }
     if (mousePos.x > 100 && mousePos.x < 200) {
         if (mousePos.y > 100 && mousePos.y < 200) {
             //2ère case
-            oRectangle.setPosition(100, 100);
-
-            window.draw(oRectangle);
+            if (m_grid[1][1] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[1][1] = player;
+            }
         }
     }
     if (mousePos.x > 200 && mousePos.x < 300) {
         if (mousePos.y > 100 && mousePos.y < 200) {
             //3ère case
-            oRectangle.setPosition(100, 200);
-
-            window.draw(oRectangle);
+            if (m_grid[1][2] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[1][2] = player;
+            }
         }
     }
     //3eme ligne
     if (mousePos.x <= 100) {
         if (mousePos.y > 200 && mousePos.y < 300) {
             //1ère case
-            oRectangle.setPosition(200, 0);
-
-            window.draw(oRectangle);
+            if (m_grid[2][0] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[2][0] = player;
+            }
         }
     }
     if (mousePos.x > 100 && mousePos.x < 200) {
         if (mousePos.y > 200 && mousePos.y < 300) {
             //2ère case
-            oRectangle.setPosition(200, 100);
-
-            window.draw(oRectangle);
+            if (m_grid[2][1] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[2][1] = player;
+            }
         }
     }
     if (mousePos.x > 200 && mousePos.x < 300) {
         if (mousePos.y > 200 && mousePos.y < 300) {
             //3ère case
-            oRectangle.setPosition(200, 200);
-
-            window.draw(oRectangle);
+            if (m_grid[2][2] == 0) {
+                if (player == 1) {
+                    player++;
+                }
+                else if (player == 2) {
+                    player--;
+                }
+                m_grid[2][2] = player;
+            }
         }
+    }
+    if (checkWin(player)) {
+        std::cout << "Joueur " << player << " a gagné !" << std::endl;
+        // Ajoutez ici le code pour gérer la fin du jeu
     }
     
     return player;
+}
+
+bool Grid::checkWin(int player) {
+    // Vérifier les lignes et la victoire sur une ligne
+    for (int i = 0; i < m_rows; i++) {
+        if (m_grid[i][0] == player && m_grid[i][1] == player && m_grid[i][2] == player) {
+            return true;
+        }
+    }
+
+    // Vérifier les colonnes et la victoire sur une colonne
+    for (int j = 0; j < m_cols; j++) {
+        if (m_grid[0][j] == player && m_grid[1][j] == player && m_grid[2][j] == player) {
+            return true;
+        }
+    }
+
+    // Vérifier les diagonales et la victoire sur une diagonale
+    if (m_grid[0][0] == player && m_grid[1][1] == player && m_grid[2][2] == player) {
+        return true;
+    }
+    // Vérifier l'autre diagonale
+    if (m_grid[0][2] == player && m_grid[1][1] == player && m_grid[2][0] == player) {
+        return true;
+    }
+
+    return false; // Aucune victoire
 }

@@ -46,10 +46,13 @@ int main( int argc, char** argv )
     //std::vector<
     int player = 1;
     Grid* oGrid = new Grid();
+    
     //GameLoop
     while( oWindow.isOpen() )
     {
+        
         //EVENT
+        //oWindow.clear();
         sf::Event oEvent;
         while( oWindow.pollEvent( oEvent ) )
         {
@@ -58,13 +61,14 @@ int main( int argc, char** argv )
             if (oEvent.type == sf::Event::MouseButtonPressed)
             {
                 player = oGrid->play(player,oWindow);
+
             }
         }
 
         //UPDATE
-        
+        oGrid->checkWin(player);
         //DRAW
-        //oWindow.clear();
+        
         ////Création d'un cercle de radius 100
         /*oWindow.draw(oRectangle); */
         oGrid->Show(oWindow);

@@ -11,5 +11,6 @@ public:
 	Grid();
 	void Show(sf::RenderWindow& window);
 	int play(int player, sf::RenderWindow& window);
+	bool checkWin(int player);
 };
 
