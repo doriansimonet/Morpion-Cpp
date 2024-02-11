@@ -23,11 +23,11 @@
 }*/
 
 
-int main( int argc, char** argv )
+int main(int argc, char** argv)
 {
     //Création d'une fenêtre
-    sf::RenderWindow oWindow( sf::VideoMode( 640, 480 ), "SFML" );
-   
+    sf::RenderWindow oWindow(sf::VideoMode(640, 480), "SFML");
+
     ////Création d'un cercle de radius 100
     //sf::CircleShape oCircle( 100.f );
     ////A la position 0, 0
@@ -46,21 +46,21 @@ int main( int argc, char** argv )
     //std::vector<
     int player = 1;
     Grid* oGrid = new Grid();
-    
+
     //GameLoop
-    while( oWindow.isOpen() )
+    while (oWindow.isOpen())
     {
-        
+
         //EVENT
         //oWindow.clear();
         sf::Event oEvent;
-        while( oWindow.pollEvent( oEvent ) )
+        while (oWindow.pollEvent(oEvent))
         {
-            if( oEvent.type == sf::Event::Closed )
+            if (oEvent.type == sf::Event::Closed)
                 oWindow.close();
             if (oEvent.type == sf::Event::MouseButtonPressed)
             {
-                player = oGrid->play(player,oWindow);
+                player = oGrid->play(player, oWindow);
 
             }
         }
@@ -68,14 +68,12 @@ int main( int argc, char** argv )
         //UPDATE
         oGrid->checkWin(player);
         //DRAW
-        
+
         ////Création d'un cercle de radius 100
         /*oWindow.draw(oRectangle); */
-        //oGrid->Show(oWindow);
+        oGrid->Show(oWindow);
         oWindow.display();
     }
 
     return 0;
 }
-
-
